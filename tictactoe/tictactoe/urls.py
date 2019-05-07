@@ -22,5 +22,5 @@ from .views import welcome
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'welcome', welcome)
+    url(r'^$', welcome)
 ]
