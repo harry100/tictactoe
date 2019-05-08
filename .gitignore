@@ -3,3 +3,4 @@ migrations
 *.pyc
 *.orig
 static
+tictactoe/db.sqlite3
