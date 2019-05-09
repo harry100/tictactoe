@@ -8,6 +8,6 @@
 	<form method="POST" action="{% url 'player_new_invitation' %}">
 		{{ form }}
 		{% csrf_token %}
-		<button type="submit"> Send an invitation</button>
+		<button type="submit" name="hello" value="syallo"> Send an invitation</button>
 	</form>
 {% endblock %}

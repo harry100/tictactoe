@@ -10,7 +10,7 @@ class Invitation(models.Model):
 	)
 	to_user = models.ForeignKey(
 		User,
-		related_name="invatations_received",
+		related_name="invitations_received",
 		on_delete=models.CASCADE
 	)
 	message = models.CharField(max_length=200)
