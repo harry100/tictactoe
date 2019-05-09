@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 	New Invitation
@@ -6,7 +7,7 @@
 
 {% block content %}
 	<form method="POST" action="{% url 'player_new_invitation' %}">
-		{{ form }}
+		{{ form|crispy }}
 		{% csrf_token %}
 		<button type="submit" name="hello" value="syallo"> Send an invitation</button>
 	</form>
