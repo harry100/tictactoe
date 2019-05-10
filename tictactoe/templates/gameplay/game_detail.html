@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block title %}
+	{{ game }}
+{% endblock title %}
+
+{% block styling %}
+	{{ block.super }}
+	<style type="text/css">
+		.tictactoe-table {
+			width: 300px;
+			border-width: 2px;
+		}
+		.tictactoe-cell {
+			background-color: #debb27;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			vertical-align: middle !important;
+			font-size: 60px;
+		}
+	</style>
+{% endblock styling %}
+
+{% block content %}
+	<div class="col-md-5">
+		<table class="table table-bordered tictactoe-table">
+            {% for row in game.board %}
+                <tr>
+                    {% for move in row %}
+                        <td class="tictactoe-cell">
+                            {% if move %}
+                                {% if move.by_first_player %}
+                                    X
+                                {% else %}
+                                    O
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+	</div>
+
+	{% if form %}
+		<div class="col-md-4">
+			<h3>It's your move</h3>
+			<form method="POST" action="">
+				{{ form|crispy }}
+				{% csrf_token %}
+
+				<button type="submit"> Make Move </button>
+			</form>
+		</div>
+	{% endif %}
+{% endblock content %}
