@@ -37,8 +37,8 @@ def new_invitation(request):
 @login_required()
 def accept_invitation(request, id):
 	invitation = get_object_or_404(Invitation, pk=id)
-	# if not request.user == invitation.to_user:
-	# 	raise PermissionDenied
+	if not request.user == invitation.to_user:
+		raise PermissionDenied
 	if request.method == 'POST':
 		if "accept" in request.POST:
 			game = Game.objects.create(
@@ -46,10 +46,8 @@ def accept_invitation(request, id):
 				second_player=invitation.from_user,
 			)
 		invitation.delete()
-		return redirect('player_home')
+		return redirect(game)
 	else:
-		print("hello")
-		print(request.method)
 		return render(
 			request,
 			"player/accept_invitation_form.html",
