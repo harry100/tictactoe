@@ -21,39 +21,56 @@
 			vertical-align: middle !important;
 			font-size: 60px;
 		}
+		.square {
+			padding-top: 10%;
+		}
 	</style>
 {% endblock styling %}
 
 {% block content %}
-	<div class="col-md-5">
-		<table class="table table-bordered tictactoe-table">
-            {% for row in game.board %}
-                <tr>
-                    {% for move in row %}
-                        <td class="tictactoe-cell">
-                            {% if move %}
-                                {% if move.by_first_player %}
-                                    X
-                                {% else %}
-                                    O
-                                {% endif %}
-                            {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
-	</div>
+	<div class="container square">
+		<div class="col-md-5">
+			{% if game.status == "F" %}
+				{{ game.frist_player }} to play
+			{% elif game.status == "S" %}
+				{{ game.second_player }} to play
+			{% elif game.status == "W" %}
+				{{ game.second_player }} won!
+			{% elif game.status == "L" %}
+				{{ game.second_player }} won!
+			{% elif game.status == "D" %}
+				It's a draw
+			{% endif %}
 
-	{% if form %}
-		<div class="col-md-4">
-			<h3>It's your move</h3>
-			<form method="POST" action="">
-				{{ form|crispy }}
-				{% csrf_token %}
-
-				<button type="submit"> Make Move </button>
-			</form>
+			<table class="table table-bordered tictactoe-table">
+	            {% for row in game.board %}
+	                <tr>
+	                    {% for move in row %}
+	                        <td class="tictactoe-cell">
+	                            {% if move %}
+	                                {% if move.by_first_player %}
+	                                    X
+	                                {% else %}
+	                                    O
+	                                {% endif %}
+	                            {% endif %}
+	                        </td>
+	                    {% endfor %}
+	                </tr>
+	            {% endfor %}
+	        </table>
 		</div>
-	{% endif %}
+
+		{% if form %}
+			<div class="col-md-4">
+				<h3>It's your move</h3>
+				<form method="POST" action="{% url 'gameplay_make_move' game.id %}">
+					{{ form|crispy }}
+					{% csrf_token %}
+
+					<button type="submit"> Make Move </button>
+				</form>
+			</div>
+		{% endif %}
+	</div>
 {% endblock content %}

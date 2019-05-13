@@ -31,6 +31,7 @@ def make_move(request, id):
 		return redirect("gameplay_detail", id)
 	else:
 		return render(
-			"gameplay/gameplay_detail.html",
+			request,
+			"gameplay/game_detail.html",
 			{'game': game, 'form': form}
 		)
