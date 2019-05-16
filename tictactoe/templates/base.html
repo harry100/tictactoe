@@ -34,8 +34,8 @@
         		<li><a href="{% url 'player_logout' %}">Logout</a></li>
         	{% else %}
         		<li><a href="{% url 'player_login' %}">Login</a></li>
-        	{% endif %}
         		<li><a href="{% url 'player_signup' %}">Sign Up</a></li>
+        	{% endif %}
         </ul>
       </div>
     </nav>
@@ -46,7 +46,8 @@
     	{% endblock %}
 
     </div>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </div> <!-- /container -->
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
         <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
